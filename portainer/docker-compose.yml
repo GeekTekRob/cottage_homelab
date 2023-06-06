@@ -2,18 +2,19 @@ version: '3.3'
 
 services:
   portainer:
-    image: portainer/portainer-ee:latest
+    image: portainer/${VERSION}:latest
     container_name: portainer
     restart: unless-stopped
+    environment:
+      TZ: ${TIMEZONE}
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
-      - docker_data:/data
+      - portainer_data:/data
     ports:
       - 9443:9000
-      - 8443:8000     
+      - 8443:8000
 
 volumes:
-  docker_data:
-    external: true
+  portainer_data:
