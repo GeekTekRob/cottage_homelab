@@ -12,7 +12,7 @@ services:
       DB_SQLITE_FILE: "/data/database.sqlite"
       # Uncomment this if IPv6 is not enabled on your host
       DISABLE_IPV6: ${DISABLE_IPV6}
-      HOSTNAME: ${NPM_HOSTNAME}      
+      HOSTNAME: ${NGINX_HOSTNAME}      
     depends_on:
       - stats
     ports:
