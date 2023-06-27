@@ -12,3 +12,7 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ${HOST_FOLDER}:/app/data
+
+networks:
+  ${MAC_VLAN_NW}:
+    external: true

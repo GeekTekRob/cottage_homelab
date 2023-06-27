@@ -3,7 +3,6 @@ services:
   portainer:
     image: portainer/${VERSION}:latest
     container_name: portainer
-    
     restart: always
     environment:
       TZ: ${TIMEZONE}
