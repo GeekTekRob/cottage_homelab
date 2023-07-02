@@ -1,0 +1,19 @@
+---
+services:
+  makemkv:
+    image: jlesage/makemkv
+    container_name: makemkv
+    privileged: true
+    ports:
+      - "5800:5800"
+    environment:
+      - MAKEMKV_KEY=${LICENSE}
+      - USER_ID=1000
+      - GROUP_ID=1000
+    volumes:
+      - "${HOST_FOLDER}/config:/config:rw"
+      - "${HOST_FOLDER}/storage:/storage:ro"
+      - "${HOST_FOLDER}/output:/output:rw"
+    devices:
+      - "/dev/sr0:/dev/sr0"
+    restart: unless-stopped
