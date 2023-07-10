@@ -1,0 +1,27 @@
+---
+services:
+  mssql:
+    container_name: sqlserver
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    ports:
+      - 1433:1433
+    restart: always
+    user: root
+    hostname: mssql1
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: ${SAPassword}
+      MSSQL_PID: Developer
+      TZ: ${TimeZone}
+    volumes:
+      - mssql_data:/var/opt/mssql
+    healthcheck:
+        test: ["CMD-SHELL", "/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P example_123 -Q 'SELECT 1' || exit 1"]
+        interval: 10s
+        retries: 10
+        start_period: 10s
+        timeout: 3s
+
+volumes:
+  mssql_data:
+    driver: local
